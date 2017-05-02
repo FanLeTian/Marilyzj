@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemContent"
+    android:layout_width="match_parent"
+    android:layout_height="126dp"
+    android:background="#F4F4F4">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#FFFFFF"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/repairName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="9dp"
+            android:gravity="center"
+            android:text="常规保养"
+            android:textColor="#767676"
+            android:textSize="24sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="需提前预约"
+            android:layout_below="@+id/repairName"
+            android:layout_alignLeft="@+id/repairName"
+            android:layout_marginTop="15dp"
+            android:textColor="#913062"
+            android:textSize="20sp"
+            android:id="@+id/deptPhone"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="专业认证"
+            android:layout_below="@+id/deptPhone"
+            android:layout_alignLeft="@+id/repairName"
+            android:layout_marginTop="15dp"
+            android:textColor="#767676"
+            android:textSize="20sp"
+            android:id="@+id/deptDesc"
+            />
+
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
