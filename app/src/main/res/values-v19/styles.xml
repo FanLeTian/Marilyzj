@@ -2,6 +2,9 @@
 
     <style name="AppTheme" parent="@style/BaseAppTheme">
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!--恢复状态栏的  位置空间-->
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
 </resources>
