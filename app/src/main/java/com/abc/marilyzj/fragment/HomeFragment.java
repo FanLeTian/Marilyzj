@@ -2,8 +2,6 @@ package com.abc.marilyzj.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Button;
@@ -11,9 +9,12 @@ import android.widget.EditText;
 
 import com.abc.marilyzj.R;
 import com.abc.marilyzj.activity.LoginActivity;
+import com.abc.marilyzj.activity.ProductDetailActivity;
 import com.abc.marilyzj.adpter.HomeAdapter;
-import com.abc.marilyzj.beans.HomeListBean;
+import com.abc.marilyzj.beans.HomeBean;
 import com.abc.marilyzj.fragment.base.BaseFragment;
+import com.abc.marilyzj.netutil.MyWealthApi;
+import com.abc.marilyzj.netutil.SuscriberX;
 import com.abc.marilyzj.util.SharedPreferencesUtil;
 import com.abc.marilyzj.util.ToastUtil;
 import com.abc.marilyzj.widgets.recycler.OnItemClickListener;
@@ -23,22 +24,22 @@ import com.aspsine.irecyclerview.OnRefreshListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 /**
  * Created by acer on 2017/4/27.
  */
 
-public class HomeFragment extends BaseFragment implements OnItemClickListener<HomeListBean.ObjBean>, OnRefreshListener {
+public class HomeFragment extends BaseFragment implements OnItemClickListener<HomeBean.ObjBean.ReslutBean>, OnRefreshListener {
 
 
     private EditText etSerach;
     private Button btSerach;
-
-
     private IRecyclerView homeRecycler;
     private HomeAdapter homeAdapter;
     private View noDataView;
-    private List<HomeListBean.ObjBean> dataList = new ArrayList<>();
-
+    private List<HomeBean.ObjBean.ReslutBean> listData = new ArrayList<>();
 
     public static HomeFragment newInstance() {
         Bundle args = new Bundle();
@@ -53,10 +54,10 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener<Ho
     }
 
 
-
     @Override
     public void onRefresh() {
-        getHomeRequest();
+        listData.clear();
+        getHomeData();
     }
 
     @Override
@@ -75,7 +76,6 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener<Ho
 
             }
         });
-
         homeAdapter = new HomeAdapter(mContext);
         homeRecycler = (IRecyclerView) mContentView.findViewById(R.id.home_recycler);
         homeAdapter.setOnItemClickListener(this);
@@ -83,40 +83,49 @@ public class HomeFragment extends BaseFragment implements OnItemClickListener<Ho
         homeRecycler.setIAdapter(homeAdapter);
         homeRecycler.setOnRefreshListener(this);
         homeRecycler.setLoadMoreEnabled(false);
-        getHomeRequest();
+        getHomeData();
     }
 
-    private void getHomeRequest() {
-        if (dataList.size() != 0) {
-            dataList.clear();
-        }
-        HomeListBean.ObjBean objbean1 = new HomeListBean.ObjBean();
-        HomeListBean.ObjBean objbean2 = new HomeListBean.ObjBean();
-        HomeListBean.ObjBean objbean3 = new HomeListBean.ObjBean();
 
-        objbean1.setRepairName("常规保修");
-        objbean1.setRepairItemsId("1000.0");
-        objbean2.setRepairName("大修");
-        objbean2.setRepairItemsId("5000.0");
-        objbean3.setRepairName("保养");
-        objbean3.setRepairItemsId("2000.0");
-        dataList.add(objbean1);
-        dataList.add(objbean2);
-        dataList.add(objbean3);
-        homeAdapter.refreshItems(dataList);
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
+    private void getHomeData() {
+        mSubscription.add(MyWealthApi.getInstance().getMyWealthService().getHomeData()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribeOn(Schedulers.io())
+        .subscribe(new SuscriberX<HomeBean>(getContext()){
             @Override
-            public void run() {
+            public void onCompleted() {
+                super.onCompleted();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                homeRecycler.setRefreshing(false);
+                super.onError(e);
+            }
+
+            @Override
+            public void onNext(HomeBean homeBean) {
+                super.onNext(homeBean);
+                switch (homeBean.getCode()) {
+                    case "0":
+                        ToastUtil.showToast(getContext(), homeBean.getMsg());
+                        listData = homeBean.getObj().getReslut();
+                        homeAdapter.refreshItems(listData);
+                        break;
+                    default:
+                        ToastUtil.showToast(getContext(), homeBean.getMsg());
+                        break;
+                }
                 homeRecycler.setRefreshing(false);
             }
-        }, 2000);
-
+        }));
     }
 
-
     @Override
-    public void onItemClick(int position, HomeListBean.ObjBean objBean, View v) {
-        ToastUtil.showToast(mContext, objBean.getRepairName());
+    public void onItemClick(int position, HomeBean.ObjBean.ReslutBean reslutBean, View v) {
+        Intent intent = new Intent(getContext(), ProductDetailActivity.class);
+        intent.putExtra("title", reslutBean.getRepairName());
+        intent.putExtra("repairItemsId", reslutBean.getRepairItemsId());
+        getActivity().startActivity(intent);
     }
 }

@@ -1,7 +1,11 @@
 package com.abc.marilyzj.netutil;
 
 
+import com.abc.marilyzj.beans.HomeBean;
 import com.abc.marilyzj.beans.LoginBean;
+import com.abc.marilyzj.beans.OderDetilBean;
+import com.abc.marilyzj.beans.OderListBean;
+import com.abc.marilyzj.beans.ProductBean;
 import com.abc.marilyzj.beans.RegisterBean;
 import com.abc.marilyzj.beans.ResetPassBean;
 import com.abc.marilyzj.beans.SetInfoBean;
@@ -15,19 +19,6 @@ import retrofit2.http.QueryMap;
 import rx.Observable;
 
 public interface MyWealthService {
-
-//    @POST("phone/api/newLogin")
-//    Observable<LoginBean> getLogin(@QueryMap Map<String, String> map);
-//
-//    @GET("phone/api/register/validateCaptcha")
-//    Observable<PictureCodeBean> verPictureCode(@QueryMap Map<String, String> map);
-//
-//    @GET("phone/api/accountInfo")
-//    Observable<AccountInfoBean> getAccountInfo();
-//
-//    @GET("phone/api/logout")
-//    Observable<ExitBean> toExit();
-
 
     @GET("UserInfo?method=login")
     Observable<LoginBean> getLogin(@QueryMap Map<String, String> map);
@@ -43,5 +34,22 @@ public interface MyWealthService {
 
     @POST("UserInfo?method=update")
     Observable<SetInfoBean> setPersonInfo(@QueryMap Map<String, String> map);
+
+    @GET("RepairItems?method=getHomeList")
+    Observable<HomeBean> getHomeData();
+
+    @GET("RepairItems?method=getInfoById")
+    Observable<ProductBean> getProduct(@QueryMap Map<String, String> map);
+
+    @GET("OrderInfo?method=getOrderInfo")
+    Observable<OderDetilBean> getOderDetail(@QueryMap Map<String, String> map);
+
+    @GET("OrderInfo?method=getAllOrderByUser")
+    Observable<OderListBean> getAllOder(@QueryMap Map<String, String> map);
+
+
+
+
+
 
 }

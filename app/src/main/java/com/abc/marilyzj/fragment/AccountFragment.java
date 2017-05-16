@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.abc.marilyzj.R;
 import com.abc.marilyzj.activity.AccountMannagerActivity;
 import com.abc.marilyzj.activity.MainActivity;
+import com.abc.marilyzj.activity.OrderActivity;
 import com.abc.marilyzj.fragment.base.BaseFragment;
 import com.abc.marilyzj.util.SharedPreferencesUtil;
 import com.abc.marilyzj.util.ToastUtil;
@@ -51,13 +52,29 @@ public class AccountFragment extends BaseFragment implements View.OnClickListene
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        accountName.setText(SharedPreferencesUtil.getPrefString(getContext(), "USER_NAME", ""));
+    }
+
+    @Override
     public void onClick(View v) {
+        Intent intent1 = new Intent(getContext(), OrderActivity.class);
         switch (v.getId()) {
             case R.id.no_submit_oder:
+                intent1.putExtra("type", "1");
+                intent1.putExtra("title", "待提交订单");
+                getContext().startActivity(intent1);
                 break;
             case R.id.no_complet_oder:
+                intent1.putExtra("type", "2");
+                intent1.putExtra("title", "待完成订单");
+                getContext().startActivity(intent1);
                 break;
             case R.id.all_oder:
+                intent1.putExtra("type", "0");
+                intent1.putExtra("title", "全部订单");
+                getContext().startActivity(intent1);
                 break;
             case R.id.account_management:
                 Intent intent = new Intent(getContext(), AccountMannagerActivity.class);

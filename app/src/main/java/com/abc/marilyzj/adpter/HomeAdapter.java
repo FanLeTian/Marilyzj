@@ -9,18 +9,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.abc.marilyzj.R;
-import com.abc.marilyzj.beans.HomeListBean;
+import com.abc.marilyzj.beans.HomeBean;
 import com.abc.marilyzj.widgets.recycler.OnItemClickListener;
 
 /**
  * Created by acer on 2017/5/2.
  */
 
-public class HomeAdapter extends BaseRecyclerAdapter<HomeListBean.ObjBean> {
+public class HomeAdapter extends BaseRecyclerAdapter<HomeBean.ObjBean.ReslutBean> {
 
-    private OnItemClickListener<HomeListBean.ObjBean> onItemClickListener = null;
+    private OnItemClickListener<HomeBean.ObjBean.ReslutBean> onItemClickListener = null;
 
-    public void setOnItemClickListener(OnItemClickListener<HomeListBean.ObjBean> onItemClickListener) {
+    public void setOnItemClickListener(OnItemClickListener<HomeBean.ObjBean.ReslutBean> onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
 
@@ -32,7 +32,8 @@ public class HomeAdapter extends BaseRecyclerAdapter<HomeListBean.ObjBean> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_item, parent, false));    }
+                .inflate(R.layout.recycler_item, parent, false));
+    }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
@@ -42,8 +43,9 @@ public class HomeAdapter extends BaseRecyclerAdapter<HomeListBean.ObjBean> {
                 onItemClickListener.onItemClick(position, getItem(position), v);
             }
         });
-        HomeListBean.ObjBean objbean = getItem(position);
+        HomeBean.ObjBean.ReslutBean objbean = getItem(position);
         ((ViewHolder) holder).repairName.setText(objbean.getRepairName());
+        ((ViewHolder) holder).deptName.setText(objbean.getDeptName());
         ((ViewHolder) holder).price.setText(objbean.getRepairItemsId());
     }
 
@@ -51,6 +53,7 @@ public class HomeAdapter extends BaseRecyclerAdapter<HomeListBean.ObjBean> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout itemContent;
         TextView repairName;
+        TextView deptName;
         TextView price;
 
 
@@ -58,8 +61,8 @@ public class HomeAdapter extends BaseRecyclerAdapter<HomeListBean.ObjBean> {
             super(itemView);
             itemContent = (RelativeLayout) itemView.findViewById(R.id.itemContent);
             repairName = (TextView) itemView.findViewById(R.id.repairName);
+            deptName = (TextView) itemView.findViewById(R.id.deptName);
             price = (TextView) itemView.findViewById(R.id.price);
-
         }
     }
 }
