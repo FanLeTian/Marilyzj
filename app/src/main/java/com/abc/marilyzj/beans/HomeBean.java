@@ -49,6 +49,26 @@ public class HomeBean extends StatusBean {
             private String price;
             private String deptId;
 
+            public String getDeptAddress() {
+                return deptAddress;
+            }
+
+            public void setDeptAddress(String deptAddress) {
+                this.deptAddress = deptAddress;
+            }
+
+            private String deptAddress;
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+
+            private String id;
+
             public String getRepairItemsId() {
                 return repairItemsId;
             }

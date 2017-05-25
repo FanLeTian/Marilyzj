@@ -2,8 +2,141 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar_back" />
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/product"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#b002ca"
+            android:textSize="30sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/oder_name"
+            tools:text="机油"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="价格："
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:textSize="28sp"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="28sp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/oder_price"
+            tools:text="2324"
+            />
+
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/oder_id"
+        tools:text="214239042394092"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="28sp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/oder_company"
+        tools:text="shanxi"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/oder_address"
+        tools:text="纽约大道"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="#e90f0f"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/company_phone"
+        tools:text="1111111"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#b002ca"
+            android:textSize="30sp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/oder_personnmae"
+            tools:text="jjjjjjj"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="时间:"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:textSize="28sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="28sp"
+            android:id="@+id/oder_time"
+            tools:text="2017.6.5"
+            />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:text="确认"
+        android:textSize="28sp"
+        android:textColor="#FFFFFF"
+        android:background="#af0999"
+        android:layout_gravity="bottom"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/to_enter_oder"
+        />
 
 </LinearLayout>

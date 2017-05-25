@@ -49,8 +49,12 @@ public class OderAdapter extends BaseRecyclerAdapter<OderListBean.ObjBeanX.ObjBe
         ((ViewHolder) holder).oderPrice.setText(objbean.getOrder().getPrice() + "");
         if (objbean.getOrder().getPayStatus().equals("1")) {
             ((ViewHolder) holder).status.setText("待提交");
-        } else {
+        } else if (objbean.getOrder().getPayStatus().equals("2")) {
             ((ViewHolder) holder).status.setText("待完成");
+        } else if (objbean.getOrder().getPayStatus().equals("3")) {
+            ((ViewHolder) holder).status.setText("已完成");
+        } else if (objbean.getOrder().getPayStatus().equals("4")) {
+            ((ViewHolder) holder).status.setText("已取消");
         }
     }
 

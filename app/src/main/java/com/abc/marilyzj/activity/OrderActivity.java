@@ -1,5 +1,6 @@
 package com.abc.marilyzj.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,7 +69,11 @@ public class OrderActivity extends BackBaseActivity implements OnItemClickListen
 
     @Override
     public void onItemClick(int position, OderListBean.ObjBeanX.ObjBean.ReslutBean reslutBean, View v) {
-
+        Intent intent = new Intent(this, OrderDetailActivity.class);
+        intent.putExtra("title", reslutBean.getOrder().getOrderName());
+        intent.putExtra("oderId", reslutBean.getOrder().getOrderId());
+        intent.putExtra("type", reslutBean.getOrder().getPayStatus());
+        startActivity(intent);
     }
 
     @Override
@@ -77,6 +82,12 @@ public class OrderActivity extends BackBaseActivity implements OnItemClickListen
         getOderList();
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        onRefresh();
+    }
 
     private void getOderList() {
         HashMap<String, String> params = new HashMap<>();

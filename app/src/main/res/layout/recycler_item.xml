@@ -44,6 +44,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="陕西4s"
+            android:textSize="20sp"
+            android:layout_below="@+id/repairName"
+            android:layout_alignBaseline="@+id/deptPhone"
+            android:layout_alignRight="@+id/price"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/dept_address"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="陕西4"
             android:layout_below="@+id/deptPhone"
             android:layout_alignLeft="@+id/repairName"

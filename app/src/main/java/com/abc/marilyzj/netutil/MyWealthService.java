@@ -1,9 +1,11 @@
 package com.abc.marilyzj.netutil;
 
 
+import com.abc.marilyzj.beans.ChangeOderTypeBean;
+import com.abc.marilyzj.beans.CreateOderBean;
 import com.abc.marilyzj.beans.HomeBean;
 import com.abc.marilyzj.beans.LoginBean;
-import com.abc.marilyzj.beans.OderDetilBean;
+import com.abc.marilyzj.beans.OderInfoBean;
 import com.abc.marilyzj.beans.OderListBean;
 import com.abc.marilyzj.beans.ProductBean;
 import com.abc.marilyzj.beans.RegisterBean;
@@ -42,14 +44,18 @@ public interface MyWealthService {
     Observable<ProductBean> getProduct(@QueryMap Map<String, String> map);
 
     @GET("OrderInfo?method=getOrderInfo")
-    Observable<OderDetilBean> getOderDetail(@QueryMap Map<String, String> map);
+    Observable<OderInfoBean> getOderDetail(@QueryMap Map<String, String> map);
 
     @GET("OrderInfo?method=getAllOrderByUser")
     Observable<OderListBean> getAllOder(@QueryMap Map<String, String> map);
 
+    @POST("OrderInfo?method=createOrder")
+    Observable<CreateOderBean> creatOder(@QueryMap Map<String, String> map);
 
+    @POST("OrderInfo?method=changeType")
+    Observable<ChangeOderTypeBean> changeType(@QueryMap Map<String, String> map);
 
-
-
+    @GET("DeptInfo?method=getInfoByType")
+    Observable<HomeBean> getInfoByType(@QueryMap Map<String, String> map);
 
 }

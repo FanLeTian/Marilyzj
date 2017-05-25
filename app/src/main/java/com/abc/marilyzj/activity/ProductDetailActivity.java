@@ -64,6 +64,7 @@ public class ProductDetailActivity extends BackBaseActivity implements View.OnCl
             case R.id.to_reservation:
                 Intent intent = new Intent(this, ReservationActivity.class);
                 intent.putExtra("title", title);
+                intent.putExtra("id", repairItemsId);
                 startActivity(intent);
                 break;
         }

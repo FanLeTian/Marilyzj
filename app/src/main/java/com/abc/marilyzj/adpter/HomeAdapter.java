@@ -46,7 +46,8 @@ public class HomeAdapter extends BaseRecyclerAdapter<HomeBean.ObjBean.ReslutBean
         HomeBean.ObjBean.ReslutBean objbean = getItem(position);
         ((ViewHolder) holder).repairName.setText(objbean.getRepairName());
         ((ViewHolder) holder).deptName.setText(objbean.getDeptName());
-        ((ViewHolder) holder).price.setText(objbean.getRepairItemsId());
+        ((ViewHolder) holder).price.setText(objbean.getPrice());
+        ((ViewHolder) holder).deptAdd.setText(objbean.getDeptAddress());
     }
 
 
@@ -55,6 +56,7 @@ public class HomeAdapter extends BaseRecyclerAdapter<HomeBean.ObjBean.ReslutBean
         TextView repairName;
         TextView deptName;
         TextView price;
+        TextView deptAdd;
 
 
         private ViewHolder(View itemView) {
@@ -63,6 +65,7 @@ public class HomeAdapter extends BaseRecyclerAdapter<HomeBean.ObjBean.ReslutBean
             repairName = (TextView) itemView.findViewById(R.id.repairName);
             deptName = (TextView) itemView.findViewById(R.id.deptName);
             price = (TextView) itemView.findViewById(R.id.price);
+            deptAdd = (TextView) itemView.findViewById(R.id.dept_address);
         }
     }
 }
